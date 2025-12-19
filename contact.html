@@ -58,6 +58,18 @@
         .map-container:hover iframe {
             filter: grayscale(0%) sepia(0%) contrast(1) opacity(1);
         }
+
+
+        /* Mobile Menu Animation */
+            .mobile-menu-enter {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            .mobile-menu-enter-active {
+                opacity: 1;
+                transform: translateY(0);
+                transition: all 0.3s ease-out;
+            }
     </style>
 </head>
 <body class="bg-theme-cream font-sans-premium text-theme-dark text-sm">
@@ -88,7 +100,30 @@
                     <i class="fas fa-shopping-bag cursor-pointer hover:text-orange-200 transition"></i>
                 </div>
             </div>
+
+                        <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl focus:outline-none hover:text-orange-200 transition">
+                           <i class="fas fa-bars"></i>
+                        </button>
         </header>
+
+                    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center hidden">
+                <button id="close-menu-btn" class="absolute top-6 right-6 text-white text-3xl focus:outline-none hover:text-orange-500 transition">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <nav class="flex flex-col items-center space-y-8 text-center">
+                    <a href="index.html" class="text-3xl text-white font-serif-premium font-medium hover:text-theme-rust transition">Home</a>
+                    <a href="shop.html" class="text-3xl text-white font-serif-premium font-medium hover:text-theme-rust transition">Shop</a>
+                    <a href="our-story.html" class="text-3xl text-white font-serif-premium font-medium hover:text-theme-rust transition">Our Story</a>
+                    <a href="contact.html" class="text-3xl text-white font-serif-premium font-medium hover:text-theme-rust transition">Contact</a>
+                </nav>
+
+                <div class="mt-12 flex gap-8 text-white text-2xl">
+                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
 
         <div class="text-center text-white pt-16 pb-8 relative z-20">
             <h1 class="text-5xl font-serif-premium font-bold mb-2 drop-shadow-sm">Get in Touch</h1>
@@ -262,5 +297,32 @@
         </div>
     </footer>
 
+    
+    <script>
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+        if (mobileMenu.classList.contains('hidden')) {
+            // Open Menu
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.add('mobile-menu-enter-active');
+                mobileMenu.classList.remove('mobile-menu-enter');
+            }, 10);
+        } else {
+            // Close Menu
+            mobileMenu.classList.add('mobile-menu-enter');
+            mobileMenu.classList.remove('mobile-menu-enter-active');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
+        }
+    }
+
+    if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
+    if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+</script>
 </body>
 </html>

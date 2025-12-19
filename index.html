@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semman Nature Store - Purity & Hygiene</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- TYPOGRAPHY --- */
+        .font-serif-premium { font-family: 'Playfair Display', serif; }
+        .font-sans-premium { font-family: 'Montserrat', sans-serif; }
+
+        /* --- MIXED BROWNISH THEME VARIABLES --- */
+        :root {
+            --color-rust: #D27D2D;       /* Brand Logo Color */
+            --color-brown-deep: #5D4037; /* Deep Coffee */
+            --color-brown-rich: #8B4513; /* Saddle Brown */
+            --color-cream-brown: #f5ece3;/* Warm Beige Background */
+            --color-text-dark: #3E2723;  /* Dark Brown Text */
+        }
+
+        /* --- UTILITY CLASSES --- */
+        .text-theme-rust { color: var(--color-rust); }
+        .text-theme-dark { color: var(--color-text-dark); }
+        
+        .bg-theme-cream { background-color: var(--color-cream-brown); }
+        .bg-theme-rust { background-color: var(--color-rust); }
+        
+        .border-theme-rust { border-color: var(--color-rust); }
+
+        /* --- MIXED BROWNISH GRADIENT (Header) --- */
+        .bg-mixed-brown-gradient {
+            background: radial-gradient(circle at 20% 50%, #8B4513 0%, #D27D2D 50%, #5D4037 100%);
+        }
+
+        /* Footer Background */
+        .bg-footer-brown { background-color: #2b1b17; }
+
+        /* Text Effects */
+        .text-outline-fill {
+            color: rgba(255, 255, 255, 0.1);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.9);
+        }
+
+        /* Hero Animations */
+        .slide-image {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+            transform: scale(1.05);
+        }
+        .slide-image.active { opacity: 1; transform: scale(1); z-index: 10; }
+        
+        .fade-text { animation: fadeIn 1.2s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Floating Leaves Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        /* Product Card Hover */
+        .product-card:hover .product-img { transform: scale(1.1); }
+
+        /* Testimonial Fade Animation */
+        .testimonial-slide {
+            display: none;
+            animation: fadeInSlide 0.8s ease-out;
+        }
+        .testimonial-slide.active { display: block; }
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-theme-cream overflow-x-hidden font-sans-premium text-theme-dark">
+
+    <div class="relative bg-mixed-brown-gradient pb-12 rounded-b-[40px] shadow-xl overflow-hidden">
+        
+        <header class="w-full pt-4 px-6 lg:px-12 flex justify-between items-center relative z-50">
+            <nav class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide uppercase text-white/90">
+                <a href="index.html" class="text-white border-b-2 border-white transition">Home</a>
+                <a href="shop.html" class="hover:text-orange-200 transition">Shop</a>
+                <a href="our-story.html" class="hover:text-orange-200 transition">Our Story</a>
+                <a href="contact.html" class="hover:text-orange-200 transition">Contact</a>
+            </nav>
+
+            <div class="absolute left-1/2 transform -translate-x-1/2 text-center top-2">
+                <a href="index.html">
+                    <img src="assets/eng-logo.png" alt="Semman Logo" class="h-24 md:h-28 w-auto object-contain drop-shadow-xl filter brightness-110">
+                </a>
+            </div>
+
+            <div class="flex items-center gap-6 text-white">
+                <div class="hidden md:flex items-center bg-white/20 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 w-64">
+                    <input type="text" placeholder="Search..." class="bg-transparent border-none outline-none text-white placeholder-white/80 text-xs w-full">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="flex gap-5 text-lg">
+                    <i class="far fa-user cursor-pointer hover:text-orange-200 transition"></i>
+                    <div class="relative">
+                        <i class="fas fa-shopping-bag cursor-pointer hover:text-orange-200 transition"></i>
+                        <span class="absolute -top-2 -right-2 bg-white text-theme-rust text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container mx-auto px-6 flex flex-col lg:flex-row items-center justify-between relative z-10 pt-8 lg:pt-12">
+            
+            <div class="lg:w-1/2 z-20 mt-8 lg:mt-0 relative pl-4 text-white">
+                <h3 id="top-title" class="text-2xl font-serif-premium italic font-medium mb-0 pl-1 opacity-90 fade-text">Untouched</h3>
+                
+                <h1 id="main-title-1" class="text-[3.5rem] lg:text-[5rem] font-black leading-[0.9] font-serif-premium drop-shadow-lg tracking-tighter fade-text text-[#fdfbf7]">
+                    HYGIENIC <br> PURITY
+                </h1>
+                <h2 id="main-title-2" class="text-[3.5rem] lg:text-[5rem] font-bold leading-none font-serif-premium text-outline-fill uppercase tracking-tight fade-text">
+                    GUARANTEED
+                </h2>
+                
+                <div class="mt-6 mb-8 pl-2 border-l-4 border-white/50">
+                    <p id="sub-desc" class="text-lg font-serif-premium italic fade-text text-orange-50">Zero touch. 100% Nature.</p>
+                    <p class="text-sm font-bold uppercase tracking-widest mt-1 text-orange-200">Chemical Free!</p>
+                </div>
+                
+                <button class="bg-white text-[#8B4513] text-xs font-bold py-3 px-8 rounded-full shadow-2xl hover:bg-orange-50 transition transform hover:-translate-y-1 flex items-center gap-2">
+                    EXPLORE PURITY <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+            <div class="lg:w-1/2 h-[450px] flex items-center justify-center relative mt-8 lg:mt-0">
+                <div class="relative w-[300px] h-[400px]"> 
+                     <div class="absolute bottom-[-10px] left-10 right-10 h-6 bg-black/30 blur-xl rounded-[100%]"></div>
+                     
+                     <img src="assets/hero/hero-1.png" class="slide-image active object-cover rounded-3xl shadow-2xl" alt="Coconut Oil">
+                     <img src="assets/hero/hero-2.png" class="slide-image object-cover rounded-3xl shadow-2xl" alt="Groundnut Oil">
+                     <img src="assets/hero/hero-3.png" class="slide-image object-cover rounded-3xl shadow-2xl" alt="Sesame Oil">
+                     
+                     <div class="absolute bottom-6 left-0 right-0 bg-white/95 backdrop-blur text-center py-2 z-30 mx-4 rounded-xl shadow-lg">
+                        <h4 id="product-label" class="text-theme-rust font-bold text-base font-serif-premium">Coconut Oil</h4>
+                        <p class="text-[9px] text-gray-500 uppercase tracking-widest">Semman Special</p>
+                     </div>
+                </div>
+                
+                <div class="absolute right-0 flex flex-col gap-3">
+                    <button onclick="setSlide(0)" class="dot w-2 h-2 rounded-full border border-white transition active bg-white"></button>
+                    <button onclick="setSlide(1)" class="dot w-2 h-2 rounded-full border border-white transition"></button>
+                    <button onclick="setSlide(2)" class="dot w-2 h-2 rounded-full border border-white transition"></button>
+                </div>
+            </div>
+
+            <i class="fas fa-leaf absolute top-20 left-[-20px] text-[#5D4037] opacity-20 text-8xl animate-float pointer-events-none rotate-45"></i>
+            <i class="fas fa-leaf absolute bottom-10 right-[-30px] text-[#D27D2D] opacity-30 text-9xl pointer-events-none rotate-[-45deg] z-10"></i>
+        </main>
+    </div>
+
+    <section class="py-16 px-6 bg-theme-cream relative z-30 -mt-8 rounded-t-[40px] shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)]">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="group p-4">
+                    <div class="w-16 h-16 bg-[#D27D2D]/10 mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-[#D27D2D]/20 transition shadow-inner border border-[#D27D2D]/20">
+                        <i class="fas fa-seedling text-2xl text-theme-rust"></i>
+                    </div>
+                    <h3 class="text-lg font-serif-premium font-bold text-theme-dark mb-2">100% Organic</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Sourced directly from certified farmers who honor the soil.</p>
+                </div>
+                <div class="group p-4">
+                    <div class="w-16 h-16 bg-[#D27D2D]/10 mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-[#D27D2D]/20 transition shadow-inner border border-[#D27D2D]/20">
+                        <i class="fas fa-mortar-pestle text-2xl text-theme-rust"></i>
+                    </div>
+                    <h3 class="text-lg font-serif-premium font-bold text-theme-dark mb-2">Traditional Process</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Wood pressed oils and stone ground flours for aroma.</p>
+                </div>
+                <div class="group p-4">
+                    <div class="w-16 h-16 bg-[#D27D2D]/10 mx-auto rounded-full flex items-center justify-center mb-4 group-hover:bg-[#D27D2D]/20 transition shadow-inner border border-[#D27D2D]/20">
+                        <i class="fas fa-truck text-2xl text-theme-rust"></i>
+                    </div>
+                    <h3 class="text-lg font-serif-premium font-bold text-theme-dark mb-2">Farm to Fork</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">Freshly packed and delivered to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="lg:w-1/2 relative">
+                    <div class="relative rounded-t-full rounded-b-2xl overflow-hidden border-8 border-theme-cream shadow-2xl h-[500px] w-full max-w-md mx-auto">
+                        <img src="assets/about1.jpg" 
+                             alt="Hands holding soil" 
+                             class="w-full h-full object-cover transform transition duration-1000 hover:scale-105">
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-lg border-l-4 border-theme-rust">
+                            <p class="font-serif-premium italic text-theme-rust text-lg">"We don't manufacture, we just bottle nature."</p>
+                        </div>
+                    </div>
+                    <div class="absolute -top-10 -left-10 w-32 h-32 bg-[#D27D2D] rounded-full opacity-10 z-[-1]"></div>
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-[#D27D2D] rounded-full opacity-20 z-[-1]"></div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <span class="text-theme-rust font-bold uppercase tracking-[0.2em] text-xs mb-4 block">The Semman Philosophy</span>
+                    <h2 class="text-4xl lg:text-5xl font-serif-premium font-bold text-theme-dark mb-6 leading-tight">
+                        From Soil <br> <span class="italic text-theme-rust">to Soul.</span>
+                    </h2>
+                    <p class="text-gray-600 leading-relaxed mb-8 text-base font-light">
+                        We believe the shortest distance between two points is a straight line. That's why we've removed the middlemen, the factories, and the chemicals. Just the farmer, the earth, and you.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 rounded-full bg-theme-rust text-white flex items-center justify-center text-lg shadow-lg group-hover:scale-110 transition">
+                                <i class="fas fa-tractor"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-theme-dark font-serif-premium">1. The Harvest</h4>
+                                <p class="text-xs text-gray-500 mt-1">Sourced from small-scale organic farms where soil health is religion.</p>
+                            </div>
+                        </div>
+                        <div class="w-1 h-6 bg-gray-200 ml-6 -my-2"></div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 rounded-full bg-white border-2 border-theme-rust text-theme-rust flex items-center justify-center text-lg shadow-lg group-hover:scale-110 transition">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-theme-dark font-serif-premium">2. The Human Touch</h4>
+                                <p class="text-xs text-gray-500 mt-1">Traditional wood pressing and stone grinding. No industrial heating.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-theme-cream">
+        <div class="container mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-theme-rust font-bold uppercase tracking-widest text-xs">Shop by Category</span>
+                <h2 class="text-3xl font-serif-premium font-bold text-theme-dark mt-2">Curated from Nature</h2>
+                <div class="w-16 h-1 bg-theme-rust mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="shop.html?category=oils" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="assets/oilcombo.jpeg" alt="Wood Pressed Oils" class="product-img w-full h-full object-cover transition duration-700">
+                        <div class="absolute top-4 right-4 bg-orange-400 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bestseller</div>
+                    </div>
+                    <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
+                        <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Wood Pressed Oils</h3>
+                        <p class="text-xs text-gray-500 mt-2 mb-4">Coconut, Groundnut & Sesame</p>
+                        <span class="text-theme-rust font-bold uppercase text-[10px] tracking-wider border-b-2 border-transparent group-hover:border-theme-rust transition">View Products</span>
+                    </div>
+                </a>
+
+                <a href="shop.html?category=flours" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="assets/healthmixcombo.jpeg" alt="Stone Ground Flours" class="product-img w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
+                        <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Stone Ground Flours</h3>
+                        <p class="text-xs text-gray-500 mt-2 mb-4">Millet, Wheat & Ragi Flour</p>
+                        <span class="text-theme-rust font-bold uppercase text-[10px] tracking-wider border-b-2 border-transparent group-hover:border-theme-rust transition">View Products</span>
+                    </div>
+                </a>
+
+                <a href="shop.html?category=spices" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="assets/spicescombo.jpeg" alt="Aromatic Spices" class="product-img w-full h-full object-cover transition duration-700">
+                    </div>
+                    <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
+                        <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Aromatic Spices</h3>
+                        <p class="text-xs text-gray-500 mt-2 mb-4">Turmeric, Chili & Masalas</p>
+                        <span class="text-theme-rust font-bold uppercase text-[10px] tracking-wider border-b-2 border-transparent group-hover:border-theme-rust transition">View Products</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-32 h-32 bg-orange-100 rounded-br-full opacity-50 z-0"></div>
+        <div class="absolute bottom-0 right-0 w-32 h-32 bg-orange-100 rounded-tl-full opacity-50 z-0"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="text-theme-rust font-bold uppercase tracking-widest text-xs">Customer Love</span>
+                <h2 class="text-3xl font-serif-premium font-bold text-theme-dark mt-2">Voices of Trust</h2>
+                <div class="w-16 h-1 bg-theme-rust mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="max-w-4xl mx-auto relative">
+                <div id="testimonial-container" class="relative min-h-[250px] bg-theme-cream rounded-3xl p-8 md:p-12 shadow-lg text-center">
+                    </div>
+
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="prevTestimonial()" class="w-10 h-10 rounded-full border border-theme-rust text-theme-rust hover:bg-theme-rust hover:text-white transition flex items-center justify-center transform active:scale-90">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextTestimonial()" class="w-10 h-10 rounded-full border border-theme-rust text-theme-rust hover:bg-theme-rust hover:text-white transition flex items-center justify-center transform active:scale-90">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-footer-brown text-orange-100/80 pt-16 pb-8">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="pr-6">
+                <div class="mb-4">
+                    <img src="assets/tamil-logo.png" alt="Semman Logo" class="h-24 md:h-28 w-auto object-contain">
+                </div>
+                <p class="text-xs leading-relaxed opacity-70">Bringing the goodness of nature to your kitchen. We bridge the gap between ancient farming wisdom and modern healthy living.</p>
+                <div class="flex gap-4 mt-6">
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Quick Links</h4>
+                <ul class="space-y-3 text-sm opacity-80">
+                    <li><a href="#" class="hover:text-orange-300 transition">Shop All</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">Our Farmers</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">Lab Reports</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">Franchise</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Support</h4>
+                <ul class="space-y-3 text-sm opacity-80">
+                    <li><a href="#" class="hover:text-orange-300 transition">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">Shipping Policy</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">Return Policy</a></li>
+                    <li><a href="#" class="hover:text-orange-300 transition">FAQs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Newsletter</h4>
+                <p class="text-xs mb-4 opacity-70">Get health tips and offers.</p>
+                <div class="flex">
+                    <input type="email" placeholder="Email" class="w-full px-3 py-2 rounded-l bg-white/10 border-none outline-none text-white text-sm placeholder-white/50">
+                    <button class="bg-theme-rust text-white px-4 py-2 rounded-r hover:bg-[#a65d20] transition"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs opacity-60">
+            &copy; 2025 Semman Nature Store. All rights reserved.
+        </div>
+    </footer>
+
+
+    <script>
+        // === HERO SLIDER LOGIC ===
+        const slideData = [
+            { topTitle: "Untouched", title1: "HYGIENIC <br> PURITY", title2: "GUARANTEED", desc: "Zero touch. 100% Nature.", label: "Coconut Oil" },
+            { topTitle: "Wholesome", title1: "NATURE'S <br> BOUNTY", title2: "CAPTURED", desc: "Clean, fresh, and chemical-free.", label: "Groundnut Oil" },
+            { topTitle: "Safe", title1: "PURE <br> ESSENCE", title2: "BOTTLED", desc: "From our farm to your family.", label: "Sesame Oil" }
+        ];
+
+        let currentSlide = 0;
+        const totalSlides = 3;
+        const intervalTime = 5000; 
+
+        const images = document.querySelectorAll('.slide-image');
+        const dots = document.querySelectorAll('.dot');
+        
+        const topTitle = document.getElementById('top-title');
+        const mainTitle1 = document.getElementById('main-title-1');
+        const mainTitle2 = document.getElementById('main-title-2');
+        const subDesc = document.getElementById('sub-desc');
+        const productLabel = document.getElementById('product-label');
+
+        function updateSlideUI(index) {
+            images.forEach(img => img.classList.remove('active'));
+            images[index].classList.add('active');
+
+            dots.forEach(dot => dot.classList.remove('bg-white'));
+            dots[index].classList.add('bg-white');
+
+            const elements = [topTitle, mainTitle1, mainTitle2, subDesc, productLabel];
+            elements.forEach(el => el.classList.remove('fade-text'));
+            void topTitle.offsetWidth; 
+            
+            topTitle.innerText = slideData[index].topTitle;
+            mainTitle1.innerHTML = slideData[index].title1;
+            mainTitle2.innerText = slideData[index].title2;
+            subDesc.innerText = slideData[index].desc;
+            productLabel.innerText = slideData[index].label;
+
+            elements.forEach(el => el.classList.add('fade-text'));
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlideUI(currentSlide);
+        }
+
+        function setSlide(index) {
+            currentSlide = index;
+            updateSlideUI(currentSlide);
+            resetTimer();
+        }
+
+        let slideInterval = setInterval(nextSlide, intervalTime);
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, intervalTime);
+        }
+
+        // === TESTIMONIAL SLIDER LOGIC ===
+        const testimonials = [
+            {
+                text: "The coconut oil brings back memories of my grandmother's cooking. The aroma is distinctively pure, and I love that it's chemical-free.",
+                name: "Priya Ramachandran",
+                role: "Homemaker, Chennai"
+            },
+            {
+                text: "I switched to Semman's Groundnut oil for all my frying needs. It feels so light on the stomach and adds a nutty flavor to the dishes.",
+                name: "Rajesh Kumar",
+                role: "Fitness Enthusiast"
+            },
+            {
+                text: "Their Sesame oil is the real deal. I use it for oil pulling and cooking. You can tell it's genuinely wood pressed by the texture.",
+                name: "Anita Suresh",
+                role: "Yoga Instructor"
+            }
+        ];
+
+        let currentTestimonial = 0;
+        const testimonialContainer = document.getElementById('testimonial-container');
+
+        function renderTestimonial(index) {
+            const t = testimonials[index];
+            testimonialContainer.innerHTML = `
+                <div class="testimonial-slide active">
+                    <div class="mb-6">
+                        <i class="fas fa-quote-left text-4xl text-theme-rust opacity-30"></i>
+                    </div>
+                    <p class="text-xl md:text-2xl font-serif-premium italic text-theme-dark leading-relaxed mb-8">"${t.text}"</p>
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-1 bg-theme-rust/20 mb-3 rounded-full"></div>
+                        <h4 class="font-bold text-lg text-theme-dark">${t.name}</h4>
+                        <span class="text-xs text-gray-500 uppercase tracking-wider">${t.role}</span>
+                        <div class="text-yellow-500 text-xs mt-2">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+            renderTestimonial(currentTestimonial);
+        }
+
+        function prevTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+            renderTestimonial(currentTestimonial);
+        }
+
+        // Initialize First Testimonial
+        renderTestimonial(0);
+
+        // Auto Slide Testimonials every 6 seconds
+        setInterval(nextTestimonial, 6000);
+
+    </script>
+</body>
+</html>

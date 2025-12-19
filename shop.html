@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Semman Nature Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- TYPOGRAPHY --- */
+        .font-serif-premium { font-family: 'Playfair Display', serif; }
+        .font-sans-premium { font-family: 'Montserrat', sans-serif; }
+
+        /* --- THEME VARIABLES --- */
+        :root {
+            --color-rust: #D27D2D;
+            --color-cream: #f5ece3;
+            --color-text: #3E2723;
+        }
+
+        /* --- COLORS & BACKGROUNDS --- */
+        .bg-theme-cream { background-color: var(--color-cream); }
+        .text-theme-dark { color: var(--color-text); }
+        .text-theme-rust { color: var(--color-rust); }
+        
+        .bg-mixed-gradient {
+            background: radial-gradient(circle at 20% 50%, #8B4513 0%, #D27D2D 50%, #5D4037 100%);
+        }
+        .bg-footer-brown { background-color: #2b1b17; }
+
+        /* --- FILTER BUTTON STYLES --- */
+        .filter-btn {
+            color: #6b7280;
+            background-color: transparent;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover {
+            color: var(--color-rust);
+            background-color: #fff7ed;
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-rust) !important;
+            color: white !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- CARD STYLES --- */
+        .product-card { transition: all 0.3s ease; cursor: pointer; }
+        .product-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+        
+        /* Animation */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+
+        /* --- MODAL STYLES --- */
+        .modal {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-theme-cream overflow-x-hidden font-sans-premium text-theme-dark">
+
+    <div class="bg-mixed-gradient pb-10 rounded-b-[50px] shadow-lg relative overflow-hidden">
+        <header class="w-full pt-4 px-6 lg:px-12 flex justify-between items-center relative z-50">
+            <nav class="hidden lg:flex space-x-8 text-sm font-semibold tracking-wide uppercase text-white/90">
+                <a href="index.html" class="hover:text-orange-200 transition">Home</a>
+                <a href="shop.html" class="text-white border-b-2 border-white transition">Shop</a>
+                <a href="our-story.html" class="hover:text-orange-200 transition">Our Story</a>
+                <a href="contact.html" class="hover:text-orange-200 transition">Contact</a>
+            </nav>
+
+            <div class="absolute left-1/2 transform -translate-x-1/2 text-center top-2">
+                <a href="index.html">
+                    <img src="assets/eng-logo.png" alt="Semman Logo" class="h-24 md:h-28 w-auto object-contain drop-shadow-xl filter brightness-110">
+                </a>
+            </div>
+
+            <div class="flex items-center gap-6 text-white">
+                <div class="hidden md:flex items-center bg-white/20 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 w-64">
+                    <input type="text" placeholder="Search..." class="bg-transparent border-none outline-none text-white placeholder-white/80 text-xs w-full">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="flex gap-5 text-lg">
+                    <i class="far fa-user cursor-pointer hover:text-orange-200 transition"></i>
+                    <i class="fas fa-shopping-bag cursor-pointer hover:text-orange-200 transition"></i>
+                </div>
+            </div>
+        </header>
+
+        <div class="text-center text-white pt-16 pb-8 relative z-20">
+            <h1 class="text-5xl font-serif-premium font-bold mb-2 drop-shadow-sm">Our Harvest</h1>
+            <div class="w-20 h-1 bg-white mx-auto mb-3 opacity-60"></div>
+            <p class="text-sm uppercase tracking-[0.2em] opacity-90 font-medium">Pure & Natural</p>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 py-12 -mt-6 relative z-30">
+        
+        <div class="flex flex-wrap justify-center gap-4 mb-12 bg-white p-3 rounded-full shadow-lg max-w-4xl mx-auto border border-gray-100">
+            <button class="filter-btn active px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('all', this)">All</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('oils', this)">Oils & Ghee</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('flours', this)">Flours</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('spices', this)">Spices</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('personal', this)">Personal Care</button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('coconut-oil')">
+                <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">Bestseller</span>
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/coconut-oil.png" alt="Coconut Oil" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Oil</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Cold Pressed Coconut Oil</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('groundnut-oil')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/groundnut-oil.png" alt="Groundnut Oil" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Oil</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Cold Pressed Groundnut Oil</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('sesame-oil')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/sesamin-oil.png" alt="Sesame Oil" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Oil</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Cold Pressed Sesame Oil</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('buffalo-ghee')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/buffalo-ghee.png" alt="Buffalo Ghee" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ghee</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Pure Buffalo Ghee</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('cow-ghee')">
+                <span class="absolute top-3 left-3 bg-yellow-500 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">A2</span>
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/cowghee.png" alt="Cow Ghee" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ghee</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Pure Cow Ghee</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('coriander-powder')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/coriandel-powder.png" alt="Coriander" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Spice</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Coriander Powder</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="flours" onclick="openModal('ragi-flour')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/rahi-flour.png" alt="Ragi Flour" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Millet</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Ragi Flour</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('chilli-powder')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/chilli-powder.png" alt="Chilli Powder" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Spice</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Chilli Powder</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="flours" onclick="openModal('gram-flour')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/gram-flour.png" alt="Gram Flour" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Flour</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Gram Flour (Besan)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="flours" onclick="openModal('wheat-flour')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/weatflour.png" alt="Wheat Flour" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Flour</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Wheat Flour</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="personal" onclick="openModal('pasu-manjal')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/pasumanjal.png" alt="Pasu Manjal" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Skin Care</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Pasu Manjal</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="personal" onclick="openModal('night-cream')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/night-cream.png" alt="Night Cream" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Skin Care</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Night Cream</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="flours" onclick="openModal('health-mix')">
+                <span class="absolute top-3 left-3 bg-purple-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">Healthy</span>
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/healthmix.png" alt="Health Mix" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Wellness</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Health Mix</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="productModal" class="modal fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl relative flex flex-col md:flex-row">
+            
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-red-500 z-10 bg-white rounded-full p-2 shadow-md">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+
+            <div class="w-full md:w-1/2 bg-gray-100 flex items-center justify-center p-8 h-64 md:h-auto">
+                <img id="modalImg" src="" alt="Product Detail" class="max-h-80 object-contain drop-shadow-xl">
+            </div>
+
+            <div class="w-full md:w-1/2 p-8 overflow-y-auto">
+                <span id="modalSub" class="text-theme-rust font-bold uppercase tracking-widest text-xs"></span>
+                <h2 id="modalTitle" class="text-3xl font-serif-premium font-bold text-gray-800 mt-2 mb-4 leading-tight"></h2>
+                
+                <p id="modalDesc" class="text-gray-600 text-sm leading-relaxed mb-6 border-l-4 border-theme-rust pl-4"></p>
+
+                <div class="space-y-4">
+                    <div>
+                        <h4 class="font-bold text-theme-dark uppercase text-xs mb-2 tracking-wider"><i class="fas fa-heart text-theme-rust mr-2"></i> Benefits</h4>
+                        <ul id="modalBenefits" class="text-sm text-gray-600 list-disc list-inside space-y-1 ml-1"></ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-theme-dark uppercase text-xs mb-2 tracking-wider mt-4"><i class="fas fa-utensils text-theme-rust mr-2"></i> Usage</h4>
+                        <p id="modalUsage" class="text-sm text-gray-600"></p>
+                    </div>
+
+                    <div class="bg-orange-50 p-4 rounded-xl mt-4">
+                        <h4 class="font-bold text-theme-rust uppercase text-xs mb-3 tracking-wider">Why Semman?</h4>
+                        <ul id="modalHighlights" class="text-xs text-gray-700 space-y-2"></ul>
+                    </div>
+                </div>
+
+                <button class="w-full mt-8 bg-theme-rust text-white font-bold py-4 rounded-xl hover:bg-[#a65d20] transition shadow-lg transform active:scale-95 flex justify-center items-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-footer-brown text-orange-100/80 pt-16 pb-8 mt-12">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="pr-6">
+                <div class="mb-4">
+                    <img src="assets/tamil-logo.png" alt="Semman Logo" class="h-24 md:h-28 w-auto object-contain">
+                </div>
+                <p class="text-xs leading-relaxed opacity-70">Bringing the goodness of nature to your kitchen.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-xs mb-6">Quick Links</h4>
+                <ul class="space-y-3 text-sm opacity-80">
+                    <li><a href="#" class="hover:text-orange-300">Shop All</a></li>
+                    <li><a href="#" class="hover:text-orange-300">Our Farmers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-xs mb-6">Support</h4>
+                <ul class="space-y-3 text-sm opacity-80">
+                    <li><a href="#" class="hover:text-orange-300">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-orange-300">Shipping Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold uppercase text-xs mb-6">Newsletter</h4>
+                <div class="flex">
+                    <input type="email" placeholder="Email" class="w-full px-3 py-2 rounded-l bg-white/10 text-white text-sm">
+                    <button class="bg-theme-rust text-white px-4 py-2 rounded-r"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs opacity-60">
+            &copy; 2025 Semman Nature Store. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- PRODUCT DATA ---
+        const products = {
+            'coconut-oil': {
+                title: "100% Pure Cold Pressed Coconut Oil – Traditional & Chemical Free",
+                subtitle: "Cold Pressed Oil",
+                img: "assets/products/coconut-oil.png",
+                desc: "Our Cold Pressed Coconut Oil is extracted using traditional wooden cold-press methods without heat or chemicals. This process preserves natural aroma, essential fatty acids, and nutrients. Ideal for healthy cooking, hair nourishment, oil pulling, and skin care. Free from preservatives and additives.",
+                benefits: [
+                    "Supports heart health",
+                    "Improves digestion",
+                    "Strengthens hair & nourishes skin",
+                    "Rich in natural antioxidants"
+                ],
+                usage: "Cooking, frying, hair oil, skin care, oil pulling",
+                highlights: [
+                    "Extracted using traditional cold-press method",
+                    "No heat, no chemicals, no preservatives",
+                    "Retains natural aroma & nutrients",
+                    "Rich in healthy fats & antioxidants",
+                    "Suitable for cooking, hair & skin care",
+                    "100% pure & natural"
+                ]
+            },
+            'groundnut-oil': {
+                title: "Traditional Cold Pressed Groundnut Oil – Pure & Nutritious",
+                subtitle: "Cold Pressed Oil",
+                img: "assets/products/groundnut-oil.png",
+                desc: "Extracted from premium groundnuts using age-old cold press techniques, this oil retains natural taste, aroma, and nutrients. A heart-friendly oil suitable for everyday Indian cooking.",
+                benefits: [
+                    "Rich in healthy fats",
+                    "Enhances food taste",
+                    "Supports cholesterol balance",
+                    "High smoke point"
+                ],
+                usage: "Cooking, frying, sautéing",
+                highlights: [
+                    "Traditional wooden cold-pressed extraction",
+                    "Natural taste and rich aroma",
+                    "High smoke point for Indian cooking",
+                    "Cholesterol-friendly oil",
+                    "Free from additives & chemicals",
+                    "Ideal for daily cooking"
+                ]
+            },
+            'sesame-oil': {
+                title: "Pure Cold Pressed Sesame Oil (Gingelly Oil) – Traditional Health Oil",
+                subtitle: "Cold Pressed Oil",
+                img: "assets/products/sesamin-oil.png",
+                desc: "Our sesame oil is cold pressed from high-quality sesame seeds, preserving antioxidants and essential nutrients. Widely used in South Indian cooking and traditional wellness practices.",
+                benefits: [
+                    "Improves bone & joint health",
+                    "Good for digestion",
+                    "Supports skin & hair health",
+                    "Ideal for oil pulling"
+                ],
+                usage: "Cooking, oil pulling, massage, hair care",
+                highlights: [
+                    "Pure cold-pressed gingelly oil",
+                    "Rich in antioxidants & healthy fats",
+                    "Supports digestion & joint health",
+                    "Ideal for cooking & oil pulling",
+                    "Chemical-free & preservative-free",
+                    "Traditional South Indian quality"
+                ]
+            },
+            'buffalo-ghee': {
+                title: "Premium Buffalo Ghee – Rich, Thick & Aromatic",
+                subtitle: "Pure Ghee",
+                img: "assets/products/buffalo-ghee.png",
+                desc: "Prepared using traditional methods from pure buffalo milk, this ghee has a rich texture and strong aroma. Ideal for sweets, curries, and deep cooking.",
+                benefits: [
+                    "High energy source",
+                    "Enhances flavor of dishes",
+                    "Long shelf life",
+                    "Rich in fat-soluble vitamins"
+                ],
+                usage: "Cooking, sweets, frying",
+                highlights: [
+                    "Made from pure buffalo milk",
+                    "Rich texture & strong aroma",
+                    "Traditional preparation method",
+                    "High energy & nutrition value",
+                    "Long shelf life",
+                    "Ideal for sweets & cooking"
+                ]
+            },
+            'cow-ghee': {
+                title: "Pure Cow Ghee – Authentic Desi & Ayurvedic Ghee",
+                subtitle: "A2 Ghee",
+                img: "assets/products/cowghee.png",
+                desc: "Made from high-quality cow milk, this ghee follows traditional preparation techniques. Known for its digestive and medicinal benefits in Ayurveda.",
+                benefits: [
+                    "Improves digestion",
+                    "Boosts immunity",
+                    "Supports brain health",
+                    "Suitable for daily use"
+                ],
+                usage: "Cooking, ayurvedic use, baby food",
+                highlights: [
+                    "Prepared from pure cow milk",
+                    "Traditional & ayurvedic method",
+                    "Easy to digest",
+                    "Boosts immunity & metabolism",
+                    "No artificial flavor or preservatives",
+                    "Suitable for daily consumption"
+                ]
+            },
+            'coriander-powder': {
+                title: "Fresh Coriander Powder – Aromatic & Flavorful",
+                subtitle: "Aromatic Spice",
+                img: "assets/products/coriandel-powder.png",
+                desc: "Prepared from carefully selected coriander seeds, finely ground to retain natural aroma and flavor. Enhances taste and digestion.",
+                benefits: [
+                    "Improves digestion",
+                    "Enhances flavor",
+                    "Natural detox properties"
+                ],
+                usage: "Curries, gravies, spice blends",
+                highlights: [
+                    "Made from premium quality coriander seeds",
+                    "Freshly ground for rich aroma",
+                    "Enhances taste & digestion",
+                    "No artificial colors or additives",
+                    "Hygienically processed",
+                    "Authentic spice flavor"
+                ]
+            },
+            'ragi-flour': {
+                title: "Natural Ragi Flour – High Calcium & Fiber Rich",
+                subtitle: "Millet Flour",
+                img: "assets/products/rahi-flour.png",
+                desc: "Stone-ground from premium ragi grains, this flour retains essential nutrients. Ideal for health-conscious families and traditional diets.",
+                benefits: [
+                    "High in calcium",
+                    "Good for diabetics",
+                    "Supports weight management",
+                    "Strengthens bones"
+                ],
+                usage: "Ragi dosa, porridge, roti",
+                highlights: [
+                    "Made from premium ragi grains",
+                    "Stone-ground to retain nutrients",
+                    "High in calcium & fiber",
+                    "Gluten-free & diabetic-friendly",
+                    "No preservatives",
+                    "Ideal for healthy diets"
+                ]
+            },
+            'chilli-powder': {
+                title: "Pure Red Chilli Powder – Natural Color & Spice",
+                subtitle: "Spice",
+                img: "assets/products/chilli-powder.png",
+                desc: "Made from sun-dried red chillies, ground without artificial color or additives. Delivers rich color and authentic spice.",
+                benefits: [
+                    "Enhances taste",
+                    "Natural metabolism booster",
+                    "No artificial colors"
+                ],
+                usage: "Curries, marinades, masala",
+                highlights: [
+                    "Prepared from sun-dried red chillies",
+                    "Natural color & strong pungency",
+                    "No added colors or chemicals",
+                    "Enhances taste & appearance",
+                    "Hygienically ground",
+                    "Authentic spicy flavor"
+                ]
+            },
+            'gram-flour': {
+                title: "Premium Gram Flour – Fresh & Protein Rich",
+                subtitle: "Flour (Besan)",
+                img: "assets/products/gram-flour.png",
+                desc: "Finely milled from quality chickpeas, gram flour is rich in protein and ideal for cooking and skincare uses.",
+                benefits: [
+                    "High protein",
+                    "Gluten free",
+                    "Good for skin & hair"
+                ],
+                usage: "Snacks, curries, face packs",
+                highlights: [
+                    "Made from high-quality chickpeas",
+                    "Finely milled & fresh",
+                    "High protein content",
+                    "Gluten-free",
+                    "Suitable for cooking & skincare",
+                    "No additives or preservatives"
+                ]
+            },
+            'wheat-flour': {
+                title: "Whole Wheat Flour – Nutritious & Freshly Milled",
+                subtitle: "Flour",
+                img: "assets/products/weatflour.png",
+                desc: "Stone-ground wheat flour retaining natural fiber and nutrients, ensuring soft rotis and healthy meals.",
+                benefits: [
+                    "Rich in fiber",
+                    "Supports digestion",
+                    "Energy giving food"
+                ],
+                usage: "Chapati, roti, baking",
+                highlights: [
+                    "Made from premium whole wheat grains",
+                    "Stone-ground for better nutrition",
+                    "High fiber content",
+                    "Soft & fluffy rotis",
+                    "No bleaching or chemicals",
+                    "Ideal for daily use"
+                ]
+            },
+            'pasu-manjal': {
+                title: "Pure Pasu Manjal – Natural Herbal Turmeric",
+                subtitle: "Wild Turmeric",
+                img: "assets/products/pasumanjal.png",
+                desc: "Traditionally used for skincare, rituals, and wellness. Known for its antibacterial, antifungal, and healing properties.",
+                benefits: [
+                    "Improves skin health",
+                    "Natural antiseptic",
+                    "Reduces skin infections"
+                ],
+                usage: "Face packs, bath powder, rituals",
+                highlights: [
+                    "100% pure wild turmeric",
+                    "Natural antibacterial properties",
+                    "Traditionally used for skincare",
+                    "Chemical-free & preservative-free",
+                    "Suitable for face packs & rituals",
+                    "Authentic herbal quality"
+                ]
+            },
+            'night-cream': {
+                title: "Herbal Night Cream – Deep Repair & Nourishment",
+                subtitle: "Skin Care",
+                img: "assets/products/night-cream.png",
+                desc: "A gentle herbal night cream formulated to repair skin overnight, improve texture, and restore natural glow.",
+                benefits: [
+                    "Repairs skin overnight",
+                    "Reduces dryness",
+                    "Improves skin tone"
+                ],
+                usage: "Apply at night on clean skin",
+                highlights: [
+                    "Herbal & skin-friendly formulation",
+                    "Deep nourishment overnight",
+                    "Improves skin texture & glow",
+                    "Reduces dryness & dullness",
+                    "Non-greasy & easy absorption",
+                    "Suitable for all skin types"
+                ]
+            },
+            'health-mix': {
+                title: "Traditional Health Mix – Nutritious Energy Booster",
+                subtitle: "Wellness Mix",
+                img: "assets/products/healthmix.png",
+                desc: "A wholesome blend of millets, grains, pulses, and nuts designed to support immunity, digestion, and daily energy needs. Suitable for all age groups.",
+                benefits: [
+                    "Boosts immunity",
+                    "Improves digestion",
+                    "Rich in vitamins & minerals"
+                ],
+                usage: "Mix with hot water or milk",
+                highlights: [
+                    "Nutritious blend of millets & grains",
+                    "Rich in vitamins & minerals",
+                    "Boosts immunity & energy",
+                    "Supports digestion",
+                    "Suitable for all age groups",
+                    "No artificial flavors or preservatives"
+                ]
+            }
+        };
+
+        // --- FILTER FUNCTION ---
+        function filterSelection(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const items = document.querySelectorAll('.product-card');
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.style.display = 'block';
+                    item.classList.add('fade-in');
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('fade-in');
+                }
+            });
+        }
+
+        // --- MODAL FUNCTIONS ---
+        const modal = document.getElementById('productModal');
+
+        function openModal(productId) {
+            const data = products[productId];
+            if (!data) return;
+
+            // Populate Content
+            document.getElementById('modalImg').src = data.img;
+            document.getElementById('modalTitle').innerText = data.title;
+            document.getElementById('modalSub').innerText = data.subtitle;
+            document.getElementById('modalDesc').innerText = data.desc;
+            document.getElementById('modalUsage').innerText = data.usage;
+
+            // Populate Lists
+            const benefitList = document.getElementById('modalBenefits');
+            benefitList.innerHTML = data.benefits.map(item => `<li>${item}</li>`).join('');
+
+            const highlightList = document.getElementById('modalHighlights');
+            highlightList.innerHTML = data.highlights.map(item => `<li class="flex items-start gap-2"><i class="fas fa-check-circle text-theme-rust mt-0.5"></i> <span>${item}</span></li>`).join('');
+
+            // Show Modal
+            modal.classList.remove('hidden');
+            // Small timeout to allow transition
+            setTimeout(() => {
+                modal.classList.add('open');
+            }, 10);
+            
+            // Prevent body scroll
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('open');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close if clicked outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -415,6 +415,18 @@
     </footer>
 
 
+    <a href="https://wa.me/919597599047?text=Hello! I'd like to know more about your products."
+       target="_blank"
+       class="fixed bottom-6 right-6 z-50 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 transition-all duration-300 hover:scale-110 animate-bounce-slow">
+        <i class="fab fa-whatsapp text-3xl"></i>
+    </a>
+
+    <button id="scroll-up-btn"
+            class="fixed bottom-24 right-6 z-50 bg-theme-rust text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg hover:bg-[#a65d20] transition-all duration-300 opacity-0 invisible translate-y-10 hover:-translate-y-1">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+
     <script>
         // === HERO SLIDER LOGIC ===
         const slideData = [
@@ -562,6 +574,28 @@
 
     if(menuBtn) menuBtn.addEventListener('click', toggleMenu);
     if(closeBtn) closeBtn.addEventListener('click', toggleMenu);
+</script>
+
+<script>
+// === SCROLL UP BUTTON LOGIC ===
+        const scrollUpBtn = document.getElementById('scroll-up-btn');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollUpBtn.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+                scrollUpBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                scrollUpBtn.classList.add('opacity-0', 'invisible', 'translate-y-10');
+                scrollUpBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+
+        scrollUpBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
 </script>
 </body>
 </html>

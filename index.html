@@ -118,19 +118,24 @@
                     </a>
                 </div>
 
-            <div class="flex items-center gap-6 text-white">
-                <div class="hidden md:flex items-center bg-white/20 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 w-64">
-                    <input type="text" placeholder="Search..." class="bg-transparent border-none outline-none text-white placeholder-white/80 text-xs w-full">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="flex gap-5 text-lg">
-                    <i class="far fa-user cursor-pointer hover:text-orange-200 transition"></i>
-                    <div class="relative">
-                        <i class="fas fa-shopping-bag cursor-pointer hover:text-orange-200 transition"></i>
-                        <span class="absolute -top-2 -right-2 bg-white text-theme-rust text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+                <div class="flex items-center gap-6 text-white">
+                    <div class="hidden md:flex items-center bg-white/20 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 w-64">
+                        <input type="text" 
+                            id="headerSearchInput" 
+                            placeholder="Search..." 
+                            class="bg-transparent border-none outline-none text-white placeholder-white/80 text-xs w-full"
+                            onkeypress="if(event.key === 'Enter') handleSearch()">
+                        <i class="fas fa-search cursor-pointer hover:text-orange-200 transition" onclick="handleSearch()"></i>
+                    </div>
+
+                    <div class="flex gap-5 text-lg">
+                        <i class="far fa-user cursor-pointer hover:text-orange-200 transition"></i>
+                        <div class="relative">
+                            <i class="fas fa-shopping-bag cursor-pointer hover:text-orange-200 transition"></i>
+                            <span class="absolute -top-2 -right-2 bg-white text-theme-rust text-[9px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
                         <button id="mobile-menu-btn" class="lg:hidden text-white text-2xl focus:outline-none hover:text-orange-200 transition">
                            <i class="fas fa-bars"></i>
@@ -150,9 +155,9 @@
                 </nav>
 
                 <div class="mt-12 flex gap-8 text-white text-2xl">
-                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="hover:text-theme-rust transition"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/semmannativestore" class="hover:text-theme-rust transition"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" class="hover:text-theme-rust transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/919791592129?text=Hello! I'd like to know more about your products." class="hover:text-theme-rust transition"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -174,9 +179,9 @@
                     <p class="text-sm font-bold uppercase tracking-widest mt-1 text-orange-200">Chemical Free!</p>
                 </div>
                 
-                <button class="bg-white text-[#8B4513] text-xs font-bold py-3 px-8 rounded-full shadow-2xl hover:bg-orange-50 transition transform hover:-translate-y-1 flex items-center gap-2">
+                <a href="our-story.html" class="bg-white text-[#8B4513] text-xs font-bold py-3 px-8 rounded-full shadow-2xl hover:bg-orange-50 transition transform hover:-translate-y-1 inline-flex items-center gap-2">
                     EXPLORE PURITY <i class="fas fa-arrow-right"></i>
-                </button>
+                </a>
             </div>
 
             <div class="lg:w-1/2 h-[450px] flex items-center justify-center relative mt-8 lg:mt-0">
@@ -307,7 +312,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <a href="shop.html?category=oils" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="assets/oilcombo.jpeg" alt="Wood Pressed Oils" class="product-img w-full h-full object-cover transition duration-700">
+                        <img src="assets/Semman-product-new/oil-combo.png" alt="Wood Pressed Oils" class="product-img w-full h-full object-cover transition duration-700">
                         <div class="absolute top-4 right-4 bg-orange-400 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bestseller</div>
                     </div>
                     <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
@@ -319,18 +324,18 @@
 
                 <a href="shop.html?category=flours" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="assets/healthmixcombo.jpeg" alt="Stone Ground Flours" class="product-img w-full h-full object-cover transition duration-700">
+                        <img src="assets/Semman-product-new/soap-combo.png" alt="Traditional Soap Combo" class="product-img w-full h-full object-cover transition duration-700">
                     </div>
                     <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
-                        <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Stone Ground Flours</h3>
-                        <p class="text-xs text-gray-500 mt-2 mb-4">Millet, Wheat & Ragi Flour</p>
+                        <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Traditional Soap Combo</h3>
+                        <p class="text-xs text-gray-500 mt-2 mb-4">Charcoal, Goat Milk & Avaram Poo</p>
                         <span class="text-theme-rust font-bold uppercase text-[10px] tracking-wider border-b-2 border-transparent group-hover:border-theme-rust transition">View Products</span>
                     </div>
                 </a>
 
                 <a href="shop.html?category=spices" class="product-card bg-white rounded-2xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition duration-500 block">
                     <div class="h-64 overflow-hidden relative">
-                        <img src="assets/spicescombo.jpeg" alt="Aromatic Spices" class="product-img w-full h-full object-cover transition duration-700">
+                        <img src="assets/Semman-product-new/powder-combo.png" alt="Aromatic Spices" class="product-img w-full h-full object-cover transition duration-700">
                     </div>
                     <div class="p-6 text-center relative bg-white mx-4 -mt-8 rounded-xl shadow-md border border-gray-100">
                         <h3 class="text-xl font-serif-premium font-bold text-theme-dark">Aromatic Spices</h3>
@@ -377,9 +382,9 @@
                 </div>
                 <p class="text-xs leading-relaxed opacity-70">Bringing the goodness of nature to your kitchen. We bridge the gap between ancient farming wisdom and modern healthy living.</p>
                 <div class="flex gap-4 mt-6">
-                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://wa.me/919791592129?text=Hello! I'd like to know more about your products." class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/semmannativestore" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://wa.me/919791592129?text=Hello! I'd like to know more about your products." class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-theme-rust hover:text-white transition" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             <div>
@@ -400,14 +405,38 @@
                     <li><a href="assets/pdf/Semman-Terms&condition.pdf" class="hover:text-orange-300 transition" target="_blank">Terms&Conditions</a></li>
                 </ul>
             </div>
-            <div>
-                <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Newsletter</h4>
-                <p class="text-xs mb-4 opacity-70">Get health tips and offers.</p>
-                <div class="flex">
-                    <input type="email" placeholder="Email" class="w-full px-3 py-2 rounded-l bg-white/10 border-none outline-none text-white text-sm placeholder-white/50">
-                    <button class="bg-theme-rust text-white px-4 py-2 rounded-r hover:bg-[#a65d20] transition"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
+                    <div>
+                    <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Newsletter</h4>
+                    <p class="text-xs mb-4 opacity-70">Get health tips and offers.</p>
+
+                    <form 
+                        action="https://api.web3forms.com/submit" 
+                        method="POST"
+                        class="flex"
+                    >
+                        <!-- Web3Forms Access Key -->
+                        <input type="hidden" name="access_key" value="82ddfa77-cc30-4b61-8cb5-2e5a3ede8950">
+
+                        <!-- Optional subject -->
+                        <input type="hidden" name="subject" value="Newsletter Subscription">
+
+                        <!-- Email Input -->
+                        <input 
+                        type="email" 
+                        name="email"
+                        placeholder="Email" 
+                        required
+                        class="w-full px-3 py-2 rounded-l bg-white/10 border-none outline-none text-white text-sm placeholder-white/50">
+
+                        <!-- Submit Button -->
+                        <button 
+                        type="submit"
+                        class="bg-theme-rust text-white px-4 py-2 rounded-r hover:bg-[#a65d20] transition">
+                        <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                    </div>
+
         </div>
         <div class="border-t border-white/10 mt-12 pt-8 text-center text-xs opacity-60">
             &copy; 2026 Semman Native Store. All rights reserved.
@@ -489,9 +518,9 @@
         // === TESTIMONIAL SLIDER LOGIC ===
         const testimonials = [
             {
-                text: "The coconut oil brings back memories of my grandmother's cooking. The aroma is distinctively pure, and I love that it's chemical-free.",
-                name: "Priya Ramachandran",
-                role: "Homemaker, Chennai"
+                text: "தேங்காய் எண்ணெய் மிகவும் தரமாக மற்றும் நன்றாக இருக்கிறது. நான் மீண்டும் வாங்குவேன். கலப்படமில்லாத சத்து மிக்க தரமான சுத்தமான செக்கு எண்ணெய் செம்மண் தயாரிப்புகள். சுத்தம் தரம் நியாயமான விலை வேண்டுமா உடனே செம்மண்  தயாரிப்பை வாங்கி பயன் அடையுங்கள்.",
+                name: "விஜயலட்சுமி",
+                role: "Coimbatore"
             },
             {
                 text: "I switched to Semman's Groundnut oil for all my frying needs. It feels so light on the stomach and adds a nutty flavor to the dishes.",
@@ -596,6 +625,22 @@
                 behavior: 'smooth'
             });
         });
+</script>
+<script>
+// === SEARCH REDIRECT LOGIC ===
+    function handleSearch() {
+        const searchInput = document.getElementById('headerSearchInput');
+        const query = searchInput.value.trim();
+        
+        // Redirect to shop.html with the search query as a parameter
+        // Example: shop.html?search=coconut
+        if (query) {
+            window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+        } else {
+            // If empty, just go to the shop page
+            window.location.href = 'shop.html';
+        }
+    }
 </script>
 </body>
 </html>

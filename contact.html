@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 
     <style>
+   
         /* --- TYPOGRAPHY --- */
         .font-serif-premium { font-family: 'Playfair Display', serif; }
         .font-sans-premium { font-family: 'Montserrat', sans-serif; }
@@ -24,16 +25,16 @@
             --color-text-dark: #3E2723;  /* Dark Brown Text */
         }
 
-                /* Logo Fade Animation */
-            @keyframes fadeCycle {
-                0%, 45% { opacity: 1; }  /* Visible */
-                50%, 95% { opacity: 0; }  /* Hidden */
-                100% { opacity: 1; }
-            }
+        /* Logo Fade Animation */
+        @keyframes fadeCycle {
+            0%, 45% { opacity: 1; }  /* Visible */
+            50%, 95% { opacity: 0; }  /* Hidden */
+            100% { opacity: 1; }
+        }
 
-            .animate-logo {
-                animation: fadeCycle 6s infinite ease-in-out;
-            }
+        .animate-logo {
+            animation: fadeCycle 6s infinite ease-in-out;
+        }
 
         /* --- UTILITY CLASSES --- */
         .text-theme-rust { color: var(--color-rust); }
@@ -52,7 +53,7 @@
         /* Footer Background */
         .bg-footer-brown { background-color: #2b1b17; }
 
-        /* Form Styling */
+        /* --- FORM STYLING & FLOATING LABELS --- */
         .form-input {
             background-color: transparent;
             border-bottom: 2px solid #d1d5db;
@@ -61,6 +62,14 @@
         .form-input:focus {
             outline: none;
             border-color: var(--color-rust);
+        }
+        
+        /* THIS IS THE FIX: Moves label up when typing */
+        .form-input:focus + label,
+        .form-input:not(:placeholder-shown) + label {
+            transform: translateY(-20px) scale(0.85);
+            color: var(--color-rust);
+            top: 0;
         }
         
         /* Map Container Filter */
@@ -72,18 +81,18 @@
             filter: grayscale(0%) sepia(0%) contrast(1) opacity(1);
         }
 
-
         /* Mobile Menu Animation */
-            .mobile-menu-enter {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            .mobile-menu-enter-active {
-                opacity: 1;
-                transform: translateY(0);
-                transition: all 0.3s ease-out;
-            }
+        .mobile-menu-enter {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        .mobile-menu-enter-active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.3s ease-out;
+        }
     </style>
+ 
 </head>
 <body class="bg-theme-cream font-sans-premium text-theme-dark text-sm">
 
@@ -212,42 +221,90 @@
             </div>
 
             <div class="lg:w-3/5 p-10 lg:p-16">
-                <form>
+                    <form 
+                    action="https://api.web3forms.com/submit" 
+                    method="POST"
+                    >
+
+                    <!-- Web3Forms Access Key -->
+                    <input type="hidden" name="access_key" value="82ddfa77-cc30-4b61-8cb5-2e5a3ede8950">
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                         <div class="relative">
-                            <input type="text" id="name" class="form-input w-full py-2 text-theme-dark" placeholder=" " required>
-                            <label for="name" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">Your Name</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            class="form-input w-full py-2 text-theme-dark" 
+                            placeholder=" " 
+                            required>
+                        <label for="name" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">
+                            Your Name
+                        </label>
                         </div>
+
                         <div class="relative">
-                            <input type="text" id="phone" class="form-input w-full py-2 text-theme-dark" placeholder=" " required>
-                            <label for="phone" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">Phone Number</label>
+                        <input 
+                            type="text" 
+                            id="phone" 
+                            name="phone"
+                            class="form-input w-full py-2 text-theme-dark" 
+                            placeholder=" " 
+                            required>
+                        <label for="phone" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">
+                            Phone Number
+                        </label>
                         </div>
                     </div>
 
                     <div class="relative mb-8">
-                        <input type="email" id="email" class="form-input w-full py-2 text-theme-dark" placeholder=" " required>
-                        <label for="email" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">Email Address</label>
+                        <input 
+                        type="email" 
+                        id="email" 
+                        name="email"
+                        class="form-input w-full py-2 text-theme-dark" 
+                        placeholder=" " 
+                        required>
+                        <label for="email" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">
+                        Email Address
+                        </label>
                     </div>
 
                     <div class="relative mb-8">
-                        <select id="subject" class="form-input w-full py-2 text-theme-dark bg-transparent" required>
-                            <option value="" disabled selected>Select a Subject</option>
-                            <option value="order">Order Status</option>
-                            <option value="product">Product Inquiry</option>
-                            <option value="franchise">Franchise/Wholesale</option>
-                            <option value="other">Other</option>
+                        <select 
+                        id="subject" 
+                        name="subject"
+                        class="form-input w-full py-2 text-theme-dark bg-transparent" 
+                        required>
+                        <option value="" disabled selected>Select a Subject</option>
+                        <option value="Order Status">Order Status</option>
+                        <option value="Product Inquiry">Product Inquiry</option>
+                        <option value="Franchise / Wholesale">Franchise / Wholesale</option>
+                        <option value="Other">Other</option>
                         </select>
                     </div>
 
                     <div class="relative mb-10">
-                        <textarea id="message" rows="4" class="form-input w-full py-2 text-theme-dark" placeholder=" " required></textarea>
-                        <label for="message" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">Your Message</label>
+                        <textarea 
+                        id="message" 
+                        name="message"
+                        rows="4" 
+                        class="form-input w-full py-2 text-theme-dark" 
+                        placeholder=" " 
+                        required></textarea>
+                        <label for="message" class="absolute left-0 top-2 text-gray-500 text-sm transition-all duration-300 pointer-events-none">
+                        Your Message
+                        </label>
                     </div>
 
-                    <button type="submit" class="bg-theme-rust text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-[#a65d20] transition transform hover:-translate-y-1 w-full md:w-auto flex items-center justify-center gap-2">
+                    <button 
+                        type="submit" 
+                        class="bg-theme-rust text-white font-bold py-4 px-10 rounded-full shadow-lg hover:bg-[#a65d20] transition transform hover:-translate-y-1 w-full md:w-auto flex items-center justify-center gap-2">
                         Send Message <i class="fas fa-paper-plane text-xs"></i>
                     </button>
-                </form>
+
+                    </form>
+
             </div>
         </div>
     </section>
@@ -293,23 +350,25 @@
                 <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Quick Links</h4>
                 <ul class="space-y-3 text-sm opacity-80">
                     <li><a href="shop.html" class="hover:text-orange-300 transition">Shop Now</a></li>
+                    <li><a href="index.html#categories" class="hover:text-orange-300 transition">New Launch</a></li>
                     <li><a href="our-story.html" class="hover:text-orange-300 transition">Our Story</a></li>
-                    <li><a href="contact.html" class="hover:text-orange-300 transition">Contact Us</a></li>
+
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Support</h4>
                 <ul class="space-y-3 text-sm opacity-80">
-                    <li><a href="#" class="hover:text-orange-300 transition">Shipping Policy</a></li>
-                    <li><a href="#" class="hover:text-orange-300 transition">Return Policy</a></li>
-                    <li><a href="#" class="hover:text-orange-300 transition">Terms & Conditions</a></li>
+                    <li><a href="contact.html" class="hover:text-orange-300 transition">Contact Us</a></li>
+                    <li><a href="assets/pdf/Semman-Shipping.pdf" class="hover:text-orange-300 transition" target="_blank">Shipping Policy</a></li>
+                    <li><a href="assets/pdf/Semman-Cancellation.pdf" class="hover:text-orange-300 transition" target="_blank">Return Policy</a></li>
+                    <li><a href="assets/pdf/Semman-Terms&condition.pdf" class="hover:text-orange-300 transition" target="_blank">Terms&Conditions</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-white font-bold uppercase tracking-widest text-xs mb-6">Visit Us</h4>
                 <ul class="space-y-3 text-sm opacity-80">
                     <li class="flex items-start gap-3"><i class="fas fa-map-marker-alt mt-1 text-theme-rust"></i> 2/193-A, Srinivasa Nagar,<br>Pattanam Pudur, Coimbatore</li>
-                    <li class="flex items-center gap-3"><i class="fas fa-envelope text-theme-rust"></i> semmannnativestore@gmail.com</li>
+                    <li class="flex items-center gap-3"><i class="fas fa-envelope text-theme-rust"></i> semmannativestore@gmail.com</li>
                 </ul>
             </div>
         </div>

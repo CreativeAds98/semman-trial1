@@ -167,6 +167,8 @@
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('flours', this)">Flours</button>
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('spices', this)">Spices</button>
             <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('personal', this)">Personal Care</button>
+            <button class="filter-btn px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wide" onclick="filterSelection('sweet', this)">Sweet</button>
+
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
@@ -362,6 +364,7 @@
                 </div>
             </div>
 
+            <!--Remove this product as per client req
             <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="oils" onclick="openModal('coconut-raw')">
                 <div class="h-64 overflow-hidden relative bg-gray-100">
                     <img src="assets/Semman-product-new/coconut.png" alt="Coconut" class="w-full h-full object-cover product-image">
@@ -371,7 +374,7 @@
                     <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Coconut (Kg)</h3>
                     <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹75.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
                 </div>
-            </div>
+            </div>-->
 
             <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="personal" onclick="openModal('charcoal-soap')">
                 <div class="h-64 overflow-hidden relative bg-gray-100">
@@ -392,6 +395,133 @@
                     <p class="text-xs text-gray-500 uppercase mb-1">Soap</p>
                     <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Manjistha Soap (100g)</h3>
                     <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹90.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+
+         <!--Additional product-->
+
+           <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="sweet" onclick="openModal('murangai-laddu')">
+                <span class="absolute top-3 left-3 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">Healthy</span>
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/Semman-product-new/murungai-keerai-laddu.png" alt="Murangai Keerai Laddu" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Sweet</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Murangai Keerai Laddu (200g)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹150.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <!--<div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('ellu-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/ellu-podi.png" alt="Ellu Podi" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ready Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Ellu Podi (100g)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹90.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>--> 
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="sweet" onclick="openModal('curry-leaves-laddu')">
+                <span class="absolute top-3 left-3 bg-pink-600 text-white text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">Healthy</span>
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/Semman-product-new/curry-leaves-laddu.png" alt="Curry Leaves Laddu" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Sweet</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Curry Leaves Laddu (200g)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹150.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+          <!--  <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('pirandai-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/pirandai-podi.png" alt="Pirandai Podi" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ready Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Pirandai Podi (100g)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹90.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('muduvatukal-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img src="assets/products/muduvatukal-podi.png" alt="Muduvatukal Podi" class="w-full h-full object-cover product-image">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Herbal Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Muduvatukal Podi (000g)</h3>
+                    <div class="flex justify-between items-center"><span class="text-theme-rust font-bold">₹0.00</span><i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i></div>
+                </div>
+            </div>--> 
+
+
+             <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('ellu-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img id="img-ellu-podi" src="assets/Semman-product-new/ellu-podi-mix(100 grams).png" alt="Ellu Podi" class="w-full h-full object-cover product-image transition-all duration-300">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ready Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Ellu Podi</h3>
+                    
+                    <select class="mb-4 w-full border border-gray-200 rounded p-2 text-xs text-gray-600 focus:outline-none focus:border-theme-rust cursor-pointer bg-white"
+                            onclick="event.stopPropagation()" 
+                            onchange="handleVariantChange(event, 'ellu-podi')">
+                        <option data-price="90.00" data-img="assets/Semman-product-new/ellu-podi-mix(100 grams).png" value="100g">100 grams</option>
+                        <option data-price="200.00" data-img="assets/Semman-product-new/ellu-podi-mix(250 grams).png" value="250g">250 grams</option>
+                    </select>
+
+                    <div class="flex justify-between items-center">
+                        <span id="price-ellu-podi" class="text-theme-rust font-bold text-lg">₹90.00</span>
+                        <i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('pirandai-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img id="img-pirandai-podi" src="assets/Semman-product-new/pirandai-podi(100 grams).png" alt="Pirandai Podi" class="w-full h-full object-cover product-image transition-all duration-300">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Ready Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Pirandai Podi</h3>
+                    
+                    <select class="mb-4 w-full border border-gray-200 rounded p-2 text-xs text-gray-600 focus:outline-none focus:border-theme-rust cursor-pointer bg-white"
+                            onclick="event.stopPropagation()" 
+                            onchange="handleVariantChange(event, 'pirandai-podi')">
+                        <option data-price="90.00" data-img="assets/Semman-product-new/pirandai-podi(100 grams).png" value="100g">100 grams</option>
+                        <option data-price="200.00" data-img="assets/Semman-product-new/pirandai-podi(250 grams).png" value="250g">250 grams</option>
+                    </select>
+
+                    <div class="flex justify-between items-center">
+                        <span id="price-pirandai-podi" class="text-theme-rust font-bold text-lg">₹90.00</span>
+                        <i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card bg-white rounded-xl overflow-hidden shadow border border-gray-100 group relative" data-category="spices" onclick="openModal('muduvatukal-podi')">
+                <div class="h-64 overflow-hidden relative bg-gray-100">
+                    <img id="img-muduvatukal-podi" src="assets/Semman-product-new/muduvatukal-podi(100 grams).png" alt="Muduvatukal Podi" class="w-full h-full object-cover product-image transition-all duration-300">
+                </div>
+                <div class="p-5">
+                    <p class="text-xs text-gray-500 uppercase mb-1">Herbal Mix</p>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 font-serif-premium">Muduvatukal Podi</h3>
+                    
+                    <select class="mb-4 w-full border border-gray-200 rounded p-2 text-xs text-gray-600 focus:outline-none focus:border-theme-rust cursor-pointer bg-white"
+                            onclick="event.stopPropagation()" 
+                            onchange="handleVariantChange(event, 'muduvatukal-podi')">
+                        <option data-price="90.00" data-img="assets/Semman-product-new/muduvatukal-podi(100 grams).png" value="100g">100 grams</option>
+                        <option data-price="200.00" data-img="assets/Semman-product-new/muduvatukal-podi(250 grams).png" value="250g">250 grams</option>
+                    </select>
+
+                    <div class="flex justify-between items-center">
+                        <span id="price-muduvatukal-podi" class="text-theme-rust font-bold text-lg">₹90.00</span>
+                        <i class="fas fa-plus-circle text-2xl text-theme-rust cursor-pointer hover:scale-110 transition"></i>
+                    </div>
                 </div>
             </div>
 
@@ -678,6 +808,52 @@
                 benefits: ["Treats pigmentation", "Improves skin texture", "Ayurvedic healing"],
                 usage: "Daily Bathing",
                 highlights: ["100g Bar", "Ayurvedic Formula", "Skin Healing"]
+            },
+            // --- NEW PRODUCTS ---
+            'murangai-laddu': {
+                title: "Murangai Keerai Laddu (200 grams)",
+                subtitle: "Healthy Sweet",
+                img: "assets/Semman-product-new/murungai-keerai-laddu.png",
+                desc: "A nutritious traditional sweet made with iron-rich Moringa leaves, jaggery, and nuts. A perfect, guilt-free energy booster for kids and adults.",
+                benefits: ["Rich in Iron & Calcium", "Boosts Immunity", "Healthy snacking"],
+                usage: "Daily snack, Energy booster",
+                highlights: ["200g Pack", "No White Sugar", "Iron Rich"]
+            },
+            'ellu-podi': {
+                title: "Ellu Podi (100/200grams)",
+                subtitle: "Traditional Rice Mix",
+                img: "assets/Semman-product-new/ellu-podi-mix(100 grams).png",
+                desc: "Flavorful and aromatic roasted sesame seed powder. A traditional South Indian accompaniment that pairs perfectly with hot rice, idli, and dosa.",
+                benefits: ["Rich in Calcium", "Strengthens bones", "Good for digestion"],
+                usage: "Mix with hot rice & sesame oil, side dish for Idli/Dosa",
+                highlights: ["100g/250g Pack", "Freshly Roasted", "High Calcium"]
+            },
+            'curry-leaves-laddu': {
+                title: "Curry Leaves Laddu (200 grams)",
+                subtitle: "Healthy Sweet",
+                img: "assets/Semman-product-new/curry-leaves-laddu.png",
+                desc: "A unique and healthy sweet made from fresh curry leaves, roasted lentils, and jaggery. Excellent for hair growth and overcoming iron deficiency.",
+                benefits: ["Promotes hair growth", "Improves eyesight", "Rich in Iron"],
+                usage: "Daily healthy snack",
+                highlights: ["200g Pack", "Hair Health", "No Preservatives"]
+            },
+            'pirandai-podi': {
+                title: "Pirandai Podi (100/200 grams)",
+                subtitle: "Herbal Rice Mix",
+                img: "assets/Semman-product-new/pirandai-podi(100 grams).png",
+                desc: "A traditional herbal powder made from Pirandai (Adamant Creeper). Highly valued in Siddha and Ayurveda for strengthening bones and improving digestion.",
+                benefits: ["Strengthens bones & joints", "Relieves indigestion", "Aids in gastritis"],
+                usage: "Mix with hot rice & ghee, side dish for Idli/Dosa",
+                highlights: ["100g/250g Pack", "Bone Health", "Ayurvedic Recipe"]
+            },
+            'muduvatukal-podi': {
+                title: "Muduvatukal Podi (100/200 grams)",
+                subtitle: "Herbal Wellness Mix",
+                img: "assets/Semman-product-new/muduvatukal-podi(100 grams).png",
+                desc: "A potent traditional herbal powder blend known for its joint and bone strengthening properties. Prepared using ancient wellness recipes.",
+                benefits: ["Relieves joint pain", "Strengthens muscles", "Improves mobility"],
+                usage: "Mix with hot rice & ghee or warm water",
+                highlights: ["100g/250g Pack", "Joint Health", "Traditional Herb"]
             }
         };
 
@@ -807,6 +983,20 @@
             window.location.href = 'shop.html';
         }
     }
+</script>
+<script>
+function handleVariantChange(event, productId) {
+    const selectedOption = event.target.options[event.target.selectedIndex];
+
+    const price = selectedOption.getAttribute("data-price");
+    const img = selectedOption.getAttribute("data-img");
+
+    // Update price
+    document.getElementById(`price-${productId}`).innerText = `₹${price}`;
+
+    // Update image
+    document.getElementById(`img-${productId}`).src = img;
+}
 </script>
 </body>
 </html>

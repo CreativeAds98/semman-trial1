@@ -998,5 +998,60 @@ function handleVariantChange(event, productId) {
     document.getElementById(`img-${productId}`).src = img;
 }
 </script>
+<script>
+    // === SEARCH BAR LOGIC ===
+    
+    // 1. Function triggered when you click the search icon or hit Enter
+    function handleSearch() {
+        const searchInput = document.getElementById('headerSearchInput');
+        if (!searchInput) return;
+        
+        const query = searchInput.value.toLowerCase().trim();
+        const currentPage = window.location.pathname;
+
+        // If we are NOT on the shop page, redirect to shop.html with the search query
+        if (!currentPage.includes('shop.html') && currentPage !== '/' && currentPage !== '') {
+            window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+            return;
+        }
+
+        // If we ARE on the shop page, filter the products directly
+        filterProductsByText(query);
+    }
+
+    // 2. The actual filtering engine
+    function filterProductsByText(query) {
+        const items = document.querySelectorAll('.product-card');
+        
+        // Optional: Remove active state from category buttons when using text search
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+
+        items.forEach(item => {
+            // Find the product title inside the card (the <h3> tag)
+            const title = item.querySelector('h3').innerText.toLowerCase();
+
+            // If the title includes the searched word, show it. Otherwise, hide it.
+            if (title.includes(query)) {
+                item.style.display = 'block';
+                item.classList.add('fade-in');
+            } else {
+                item.style.display = 'none';
+                item.classList.remove('fade-in');
+            }
+        });
+    }
+
+    // 3. Automatically run search on page load if coming from another page
+    window.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+        
+        if (searchQuery) {
+            const searchInput = document.getElementById('headerSearchInput');
+            if (searchInput) searchInput.value = searchQuery;
+            filterProductsByText(searchQuery.toLowerCase());
+        }
+    });
+</script>
 </body>
 </html>
